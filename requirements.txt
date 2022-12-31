@@ -1,0 +1,25 @@
+1. The software must have the following entrances according to how many weeks 
+   he wants to register
+    - number of weeks
+    - month day
+
+    -> one for each week
+    - first in
+    - first out
+    - last in
+    - last out
+
+2. It must calculate the total worked hours in a day and the extra hours
+
+3. It must generate a csv file with the input data, the csv will look something
+   like this:
+
+        Dia, Entrada, Saída, Entrada, Saída, Total, Hora extra
+        Segunda,11:00,13:00,13:25,19:25,08:00,0:00
+        Terça,12:10,13:00,14:00,20:10,07:00,-1:00
+        Quarta,09:03,13:00,13:27,21:02,11:32,3:32
+        Quinta,11:40,12:00,12:20,21:33,09:33,1:33
+        Sexta,07:09,12:30,13:30,19:19,11:10,3:10
+
+        Total Horas Extras, Total Horas trabalhadas
+        7:75, 23:15
