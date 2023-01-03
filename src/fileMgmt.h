@@ -18,7 +18,8 @@ class FileMgmt{
         std::vector<std::vector<std::string>> content;
         std::vector<std::string> row;
         std::string line, word;
-        int readCsvFileLoadContentMemory();
+        void readCsvFileLoadContentMemory();
+        void showLoadedMemoryContent();
 };
 
 #endif

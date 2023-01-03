@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include "utils/colormod.h"
-#include "fileMgmt.h"
+#include "src/fileMgmt.h"
 
 int main() {
     color::modifier magenta(color::FG_MAGENTA);
@@ -15,5 +16,10 @@ int main() {
     std::cin  >> outputPath;
 
     FileMgmt* FileManager = new FileMgmt(inputPath, outputPath);
+
+    FileManager->readCsvFileLoadContentMemory();
+
+    FileManager->showLoadedMemoryContent();
+    
     return 0;
 }

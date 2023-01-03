@@ -1,27 +1,32 @@
 #include <iostream>
-
+#include <sstream>
+#include <string>
 #include "fileMgmt.h"
 
-int FileMgmt::readCsvFileLoadContentMemory() {
-    std::fstream file(this -> inputFilePath, std::ios::in);
+void FileMgmt::readCsvFileLoadContentMemory() {
+    std::fstream file(this->inputFilePath, std::ios::in);
     if (file.is_open()) {
-        while (std::getline(file, this -> line)) {
-            this -> row.clear();
-            std::stringstream str(this -> line);
-            while (std::getline(str, this -> word, ',')) {
-                row.push_back(this -> word);
-                content.push_back(this -> row);
+        while (std::getline(file, this->line)) {
+            this->row.clear();
+            std::stringstream str(this->line);
+            while (std::getline(str, this->word, ',')) {
+                this->row.push_back(this->word);
+                this->content.push_back(this->row);
             }
         }
     } else {
         std::cout << "Não foi possível abrir o arquivo" << std::endl;
+    }
+}
 
-        for (int i = 0; i < content.size(); i++) {
-            for (int j = 0; j < content[i].size(); j++) {
-                std::cout << content[i][j] << " ";
-            }
-            std::cout << "\n";
+// TODO: Check the printed output of this method!
+void FileMgmt::showLoadedMemoryContent() {
+    std::stringstream headerResult;
+    std::stringstream contentResult;
+    for (int i = 0; i < this->content.size(); i++) {
+        for (int j = 0; j < this->content[i].size(); j++) {
+            std::cout << this->content[i][j] << " ";
         }
-        return 0;
+        std::cout << "\n";
     }
 }
