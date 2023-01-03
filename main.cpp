@@ -16,9 +16,7 @@ int main() {
     std::cin  >> outputPath;
 
     FileMgmt* FileManager = new FileMgmt(inputPath, outputPath);
-
     FileManager->readCsvFileLoadContentMemory();
-
     FileManager->showLoadedMemoryContent();
     
     return 0;

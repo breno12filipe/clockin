@@ -6,6 +6,7 @@
 #include <vector>
 #include <sstream>
 
+// TODO: Check the access modifiers and return of the methods
 class FileMgmt{
     public:
         std::string inputFilePath;
@@ -20,6 +21,7 @@ class FileMgmt{
         std::string line, word;
         void readCsvFileLoadContentMemory();
         void showLoadedMemoryContent();
+        void generateOutputCsvFile();
 };
 
 #endif
