@@ -2,10 +2,9 @@
 #define SRC_DATE_H
 class Date {
     public:
-        // dummy implementation
         Date();
         ~Date();
-        static void calculateNumbers(float firstIn, float firstOut, float lastIn, float lastOut){};
+        static float calculateNumbers(float firstIn, float firstOut, float lastIn, float lastOut);
 };
 
-#endif
+#endif  

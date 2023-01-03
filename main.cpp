@@ -1,36 +1,19 @@
 #include <iostream>
-#include <map>
-#include <vector>
+#include <string>
 #include "utils/colormod.h"
-#include "src/date.h"
-
-void allocateInputValue(std::vector<float> *week, float &input) {
-    week->push_back(input);
-}
+#include "fileMgmt.h"
 
 int main() {
-    int i, j, weekNo, monthDay;
-    float firstIn, firstOut, lastIn, lastOut;
-
     color::modifier magenta(color::FG_MAGENTA);
     color::modifier def(color::FG_DEFAULT);
 
+    std::string inputPath, outputPath;
     std::cout << magenta << "    (CLOCKIN 0.1)    " << std::endl;
-    std::cout << def << "    Digite a quantidade de semanas" << std::endl;
-    std::cin  >> weekNo;
-    std::cout << "    Digite o mes" << std::endl;
-    std::cin  >> monthDay;
+    std::cout << "Digite o local de origem do arquivo:" << std::endl;
+    std::cin  >> inputPath;
+    std::cout << "Digite o local de destino do arquivo:" << std::endl;
+    std::cin  >> outputPath;
 
-    for (int i = 0; i < weekNo; i++) {
-        std::cout << "    Digite a primeira hora de entrada" << std::endl;
-        std::cin  >> firstIn;
-        std::cout << "    Digite a primeira hora de saida" << std::endl;
-        std::cin  >> firstOut;
-        std::cout << "    Digite a ultima hora de entrada" << std::endl;
-        std::cin  >> lastIn;
-        std::cout << "    Digite a ultima hora de saida" << std::endl;  
-        std::cin  >> lastOut;
-        Date::calculateNumbers(firstIn, firstOut, lastIn, lastOut);
-    }
+    FileMgmt* FileManager = new FileMgmt(inputPath, outputPath);
     return 0;
 }
