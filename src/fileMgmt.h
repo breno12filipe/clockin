@@ -22,6 +22,8 @@ class FileMgmt{
         void readCsvFileLoadContentMemory();
         void showLoadedMemoryContent();
         void generateOutputCsvFile();
+    protected:
+        float parseCsvFileValues(std::string &floatStringRepr);
 };
 
 #endif
