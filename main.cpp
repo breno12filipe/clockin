@@ -22,7 +22,7 @@ int main() {
 
     FileMgmt* FileManager = new FileMgmt(inputPath, outputPath);
     FileManager->readCsvFileLoadContentMemory();
-    FileManager->showLoadedMemoryContent();
+    FileManager->parseCsvFileValues();
     
     return 0;
 }

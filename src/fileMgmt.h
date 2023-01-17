@@ -9,21 +9,16 @@
 // TODO: Check the access modifiers and return of the methods
 class FileMgmt{
     public:
-        std::string inputFilePath;
-        std::string outputFilePath;
-        FileMgmt(std::string inputPath, std::string outputPath){
-            inputFilePath = inputPath;
-            outputFilePath = outputPath;
-        };
+        FileMgmt(std::string, std::string);
         ~FileMgmt();
-        std::vector<std::vector<std::string>> content;
+        std::string inputPath, outputPath, line, word;
+        //std::vector<std::vector<std::string>> content;
+        std::vector<std::string> content;
         std::vector<std::string> row;
-        std::string line, word;
         void readCsvFileLoadContentMemory();
         void showLoadedMemoryContent();
         void generateOutputCsvFile();
-    protected:
-        float parseCsvFileValues(std::string &floatStringRepr);
+        void parseCsvFileValues();
 };
 
 #endif
