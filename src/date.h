@@ -1,10 +1,13 @@
 #ifndef SRC_DATE_H
 #define SRC_DATE_H
+
+#include <vector>
+
 class Date {
     public:
         Date();
         ~Date();
-        static float calculateNumbers(float firstIn, float firstOut, float lastIn, float lastOut);
+        static float calculateNumbers(std::vector<float> &hours);
 };
 
 #endif  

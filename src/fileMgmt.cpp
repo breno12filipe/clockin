@@ -2,9 +2,10 @@
 #include <sstream>
 #include <string>
 #include <regex>
+#include <cstdlib>
 #include "fileMgmt.h"
 
-FileMgmt::FileMgmt(std::string inputPath, std::string outputPath){
+FileMgmt::FileMgmt(std::string inputPath, std::string outputPath) {
     this->inputPath = inputPath;
     this->outputPath = outputPath;
 };
@@ -16,11 +17,12 @@ void FileMgmt::readCsvFileLoadContentMemory() {
             this->row.clear();
             std::stringstream str(this->line);
             while (std::getline(str, this->word, ',')) {
-                //this->row.push_back(this->word);
+                // this->row.push_back(this->word);
                 this->content.push_back(this->word);
             }
         }
-    } else {
+    }
+    else {
         std::cout << "Não foi possível abrir o arquivo" << std::endl;
     }
 }
@@ -35,18 +37,17 @@ void FileMgmt::showLoadedMemoryContent() {
 }
 
 void FileMgmt::parseCsvFileValues() {
-    std::vector <float> parsedVals;
+    std::vector<float> parsedVals;
     for (int i = 0; i < this->content.size(); i++) {
-        
-        //std::cout << this->content[i][j] << "\n";
-        //std::cout << this->content[i] << "\n";
-        if (std::regex_match (this->content[i], std::regex("[+-]?([0-9]*[.])?[0-9]+"))){
-            std::cout << this->content[i] << " Matched" << std::endl;
-            continue;
+        if (std::regex_match(this->content[i], std::regex("[+-]?([0-9]*[.])?[0-9]+"))) {
+            if (!std::regex_match(this->content[i], std::regex("^\\d+$"))) {
+                parsedVals.emplace_back(atof(this->content[i].c_str()));
+                if (parsedVals.size() == 4) {
+                    Date::calculateNumbers(parsedVals);
+                    parsedVals.clear();
+                }
+                continue;
+            }
         }
-    
-        //std::cout << "\n";
     }
-
-    //return ::atof(floatStringRepr.c_str());
 }

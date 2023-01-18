@@ -1,9 +1,10 @@
 #include <iostream>
+#include <vector>
 #include "date.h"
 
-float Date::calculateNumbers(float firstIn, float firstOut, float lastIn, float lastOut){
+float Date::calculateNumbers(std::vector<float> &hours){
     float firstSub, secondSub;
-    firstSub  = firstIn - firstOut;
-    secondSub = lastOut - lastIn; 
-    return lastIn - lastOut + firstIn - firstOut;
+    firstSub  = hours[0] - hours[1];
+    secondSub = hours[2] - hours[3];
+    return secondSub + firstSub;
 }
