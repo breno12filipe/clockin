@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 #include "utils/colormod.h"
 #include "src/fileMgmt.h"
 
@@ -20,9 +21,11 @@ int main() {
     std::cout << "Digite o local de destino do arquivo:" << std::endl;
     std::cin  >> outputPath;
 
-    FileMgmt* FileManager = new FileMgmt(inputPath, outputPath);
+    std::unique_ptr<FileMgmt> FileManager(new FileMgmt(inputPath, outputPath));
+
     FileManager->readCsvFileLoadContentMemory();
     FileManager->parseCsvFileValues();
+    FileManager->writeOutputValuesIntoFile();
     
     return 0;
 }

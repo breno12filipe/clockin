@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include <fstream>
 #include <string>
 #include <regex>
 #include <cstdlib>
@@ -38,16 +39,26 @@ void FileMgmt::showLoadedMemoryContent() {
 
 void FileMgmt::parseCsvFileValues() {
     std::vector<float> parsedVals;
+    std::pair<float, float> result;
     for (int i = 0; i < this->content.size(); i++) {
         if (std::regex_match(this->content[i], std::regex("[+-]?([0-9]*[.])?[0-9]+"))) {
             if (!std::regex_match(this->content[i], std::regex("^\\d+$"))) {
                 parsedVals.emplace_back(atof(this->content[i].c_str()));
                 if (parsedVals.size() == 4) {
-                    std::cout << Date::calculateNumbers(parsedVals) << std::endl;
+                    result = Date::calculateNumbers(parsedVals);
+                    outputResult.first  = result.first;
+                    outputResult.second = result.second;
                     parsedVals.clear();
                 }
                 continue;
             }
         }
     }
+}
+
+void FileMgmt::writeOutputValuesIntoFile() {
+    std::cout << "Chegou no writeOutputValuesIntoFile" << std::endl;
+    //std::ofstream outputFile(this->outputPath);
+    //outputFile << "abcywok";
+    //outputFile.close();
 }
