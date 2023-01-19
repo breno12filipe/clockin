@@ -2,12 +2,14 @@
 #define SRC_DATE_H
 
 #include <vector>
+#include <utility>
 
 class Date {
     public:
         Date();
         ~Date();
-        static float calculateNumbers(std::vector<float> &hours);
+        static std::pair<float, float> calculateNumbers(std::vector<float> &hours);
+        static float calculateExtraHours(float &hour);
 };
 
 #endif  

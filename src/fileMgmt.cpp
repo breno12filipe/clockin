@@ -43,7 +43,7 @@ void FileMgmt::parseCsvFileValues() {
             if (!std::regex_match(this->content[i], std::regex("^\\d+$"))) {
                 parsedVals.emplace_back(atof(this->content[i].c_str()));
                 if (parsedVals.size() == 4) {
-                    Date::calculateNumbers(parsedVals);
+                    std::cout << Date::calculateNumbers(parsedVals) << std::endl;
                     parsedVals.clear();
                 }
                 continue;
