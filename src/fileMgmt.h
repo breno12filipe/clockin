@@ -6,6 +6,7 @@
 #include <vector>
 #include <sstream>
 #include <utility>
+#include <list>
 #include "date.h"
 
 // TODO: Check the access modifiers and return of the methods
@@ -16,7 +17,7 @@ class FileMgmt{
         std::string inputPath, outputPath, line, word;
         std::vector<std::string> content;
         std::vector<std::string> row;
-        std::pair<float, float> outputResult;
+        std::vector<std::pair<float, float>> outputResult;
         void readCsvFileLoadContentMemory();
         void showLoadedMemoryContent();
         void generateOutputCsvFile();

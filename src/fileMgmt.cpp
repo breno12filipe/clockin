@@ -4,6 +4,8 @@
 #include <string>
 #include <regex>
 #include <cstdlib>
+#include <list>
+#include <math.h>
 #include "fileMgmt.h"
 
 FileMgmt::FileMgmt(std::string inputPath, std::string outputPath) {
@@ -39,15 +41,12 @@ void FileMgmt::showLoadedMemoryContent() {
 
 void FileMgmt::parseCsvFileValues() {
     std::vector<float> parsedVals;
-    std::pair<float, float> result;
     for (int i = 0; i < this->content.size(); i++) {
         if (std::regex_match(this->content[i], std::regex("[+-]?([0-9]*[.])?[0-9]+"))) {
             if (!std::regex_match(this->content[i], std::regex("^\\d+$"))) {
                 parsedVals.emplace_back(atof(this->content[i].c_str()));
                 if (parsedVals.size() == 4) {
-                    result = Date::calculateNumbers(parsedVals);
-                    outputResult.first  = result.first;
-                    outputResult.second = result.second;
+                    outputResult.emplace_back(Date::calculateNumbers(parsedVals));
                     parsedVals.clear();
                 }
                 continue;
@@ -57,8 +56,23 @@ void FileMgmt::parseCsvFileValues() {
 }
 
 void FileMgmt::writeOutputValuesIntoFile() {
-    std::cout << "Chegou no writeOutputValuesIntoFile" << std::endl;
-    //std::ofstream outputFile(this->outputPath);
-    //outputFile << "abcywok";
-    //outputFile.close();
+    std::list<std::string> header = {"primeira_entrada", "primeira_saida", "ultima_entrada", "ultima_saida", "dia_mes", "horas_trabalhadas", "horas_extras"};
+    std::string filePath = inputPath + "output_intervals.csv";
+    std::ofstream outputFile(inputPath);
+
+
+    for (int i = 0; i < this->content.size(); i++) {
+        if (std::regex_match(this->content[i], std::regex("[+-]?([0-9]*[.])?[0-9]+")) && 
+            !std::regex_match(this->content[i], std::regex("^\\d+$"))) {
+            std::cout << this->content[i] << std::endl;
+            for (int j = 0; j < 4; j++) {
+                //outputFile << this->content[i] << std::endl;
+                std::cout << this->content[i] << ", ";
+                if (j == 3) {
+                    std::cout << "\n";
+                }
+            }
+        }
+    }
+    
 }
