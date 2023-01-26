@@ -56,23 +56,30 @@ void FileMgmt::parseCsvFileValues() {
 }
 
 void FileMgmt::writeOutputValuesIntoFile() {
+    // escreve isso no arquivo em uma unica linha
     std::list<std::string> header = {"primeira_entrada", "primeira_saida", "ultima_entrada", "ultima_saida", "dia_mes", "horas_trabalhadas", "horas_extras"};
-    std::string filePath = inputPath + "output_intervals.csv";
-    std::ofstream outputFile(inputPath);
-
+    int counter = 0;
 
     for (int i = 0; i < this->content.size(); i++) {
         if (std::regex_match(this->content[i], std::regex("[+-]?([0-9]*[.])?[0-9]+")) && 
             !std::regex_match(this->content[i], std::regex("^\\d+$"))) {
-            std::cout << this->content[i] << std::endl;
-            for (int j = 0; j < 4; j++) {
-                //outputFile << this->content[i] << std::endl;
-                std::cout << this->content[i] << ", ";
-                if (j == 3) {
-                    std::cout << "\n";
-                }
+            // escreve isso no arquivo
+            std::cout << this->content[i] << ", ";
+            counter++;
+            if (counter == 4) {
+                std::cout << "\n";
+                counter = 0;
             }
+
         }
     }
+    // escreve isso no arquivo, depois das linhas
+    for (int k = 0; k < this->outputResult.size(); k++) {
+        std::cout << this->outputResult[k].first << ", ";
+        std::cout << this->outputResult[k].second << std::endl;
+    }
+
+
+
     
 }
