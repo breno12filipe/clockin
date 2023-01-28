@@ -1,31 +1,30 @@
+#include "src/fileMgmt.h"
+#include "utils/colormod.h"
 #include <iostream>
+#include <memory>
 #include <string>
 #include <vector>
-#include <memory>
-#include "utils/colormod.h"
-#include "src/fileMgmt.h"
 
 int main() {
-    color::modifier magenta(color::FG_MAGENTA);
-    color::modifier def(color::FG_DEFAULT);
-    color::modifier blue(color::FG_BLUE);
-    color::modifier green(color::FG_GREEN);
-    
+  color::modifier magenta(color::FG_MAGENTA);
+  color::modifier def(color::FG_DEFAULT);
+  color::modifier blue(color::FG_BLUE);
+  color::modifier green(color::FG_GREEN);
 
-    std::string inputPath, outputPath;
-    std::cout << blue << "\n\n       ###############" << std::endl;
-    std::cout << green << "        (CLOCKIN 1.0)" << std::endl;
-    std::cout << blue << "       ###############" << std::endl;
-    std::cout << def     << "Digite o local de origem do arquivo:" << std::endl;
-    std::cin  >> inputPath;
-    std::cout << "Digite o local de destino do arquivo:" << std::endl;
-    std::cin  >> outputPath;
+  std::string inputPath, outputPath;
+  std::cout << blue << "\n\n       ###############" << std::endl;
+  std::cout << green << "        (CLOCKIN 1.0)" << std::endl;
+  std::cout << blue << "       ###############" << std::endl;
+  std::cout << def << "Digite o local de origem do arquivo:" << std::endl;
+  std::cin >> inputPath;
+  std::cout << "Digite o local de destino do arquivo:" << std::endl;
+  std::cin >> outputPath;
 
-    std::unique_ptr<FileMgmt> FileManager(new FileMgmt(inputPath, outputPath));
+  std::unique_ptr<FileMgmt> FileManager(new FileMgmt(inputPath, outputPath));
 
-    FileManager->readCsvFileLoadContentMemory();
-    FileManager->parseCsvFileValues();
-    FileManager->writeOutputValuesIntoFile();
-    
-    return 0;
+  FileManager->readCsvFileLoadContentMemory();
+  FileManager->parseCsvFileValues();
+  FileManager->writeOutputValuesIntoFile();
+
+  return 0;
 }
