@@ -6,6 +6,8 @@
 #include <cstdlib>
 #include <list>
 #include <math.h>
+#include <iomanip>
+#include "fmt/core.h"
 #include "fileMgmt.h"
 
 FileMgmt::FileMgmt(std::string inputPath, std::string outputPath) {
@@ -70,13 +72,11 @@ void FileMgmt::writeOutputValuesIntoFile() {
     for (int i = 0; i < this->content.size(); i++) {
         if (std::regex_match(this->content[i], std::regex("[+-]?([0-9]*[.])?[0-9]+")) && 
             !std::regex_match(this->content[i], std::regex("^\\d+$"))) {
-            std::cout << this->content[i] << ", ";
             outputFile << this->content[i] << ", ";
             counter++;
             if (counter == 4) {
-                
-                outputFile << this->outputResult[i].first  << ", ";
-                outputFile << this->outputResult[i].second << "\n";
+                outputFile << std::fixed << std::setprecision(2) << this->outputResult[i].first << ", ";
+                outputFile << std::fixed << std::setprecision(2) << this->outputResult[i].second << "\n";
                 counter = 0;
             }
 

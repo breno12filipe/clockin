@@ -1,5 +1,6 @@
 #ifndef SRC_FILE_MGMT_H
 #define SRC_FILE_MGMT_H
+#define FMT_HEADER_ONLY
 #include <string>
 #include <fstream>
 #include <string>
