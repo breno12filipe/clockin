@@ -6,8 +6,8 @@
 
 class Date {
     public:
-        Date();
-        ~Date();
+        Date() = default;
+        ~Date() = default;
         static std::pair<float, float> calculateNumbers(std::vector<float> &hours);
         static float calculateExtraHours(float &hour);
 };
